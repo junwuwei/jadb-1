@@ -128,33 +128,16 @@ public class ADBDevice {
         for (int x = 1; x < lines.length; x++) { // skip first line
             ADBProcess adbProcess = new ADBProcess();
             String line = lines[x];
-
-            int index = line.indexOf(" ");
-            adbProcess.setUser(line.substring(0, index));
-            line = line.substring(index).trim();
-            index = line.indexOf(" ");
-            adbProcess.setPid(Integer.parseInt(line.substring(0, index)));
-            line = line.substring(index).trim();
-            index = line.indexOf(" ");
-            adbProcess.setPpid(Integer.parseInt(line.substring(0, index)));
-            line = line.substring(index).trim();
-            index = line.indexOf(" ");
-            adbProcess.setVsize(Integer.parseInt(line.substring(0, index)));
-            line = line.substring(index).trim();
-            index = line.indexOf(" ");
-            adbProcess.setRss(Integer.parseInt(line.substring(0, index)));
-            line = line.substring(index).trim();
-            index = line.indexOf(" ");
-            adbProcess.setWchan(line.substring(0, index));
-            line = line.substring(index).trim();
-            index = line.indexOf(" ");
-            adbProcess.setPc(line.substring(0, index));
-            line = line.substring(index).trim();
-            index = line.indexOf(" ");
-            adbProcess.setType(line.substring(0, index));
-            line = line.substring(index).trim();
-            adbProcess.setName(line);
-
+            String[] values = line.split("\\s+");
+            adbProcess.setUser(values[0]);
+            adbProcess.setPid(Integer.valueOf(values[1]));
+            adbProcess.setPpid(Integer.valueOf(values[2]));
+            adbProcess.setVsize(Integer.valueOf(values[3]));
+            adbProcess.setRss(Integer.valueOf(values[4]));
+            adbProcess.setWchan(values[5]);
+            adbProcess.setPc(values[6]);
+            adbProcess.setType(values[7]);
+            adbProcess.setName(values[8]);
             adbProcesses.add(adbProcess);
         }
         return adbProcesses;
