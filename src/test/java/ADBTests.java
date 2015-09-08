@@ -2,6 +2,7 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import ua.com.lavi.jadb.engine.ADBDisplayOrientation;
+import ua.com.lavi.jadb.engine.ADBProcess;
 import ua.com.lavi.jadb.engine.ADBRemoteFile;
 import ua.com.lavi.jadb.engine.ADBScreenshotType;
 import ua.com.lavi.jadb.service.ADBService;
@@ -80,6 +81,14 @@ public class ADBTests {
         for (String deviceUdid : activeUdids) {
             String text = "testSendKeys via ADB";
             adbService.sendKeys(deviceUdid, text);
+        }
+    }
+
+    @Test
+    public void testProcessList() throws Exception {
+        for (String deviceUdid : activeUdids) {
+            List<ADBProcess> list = adbService.getProcessList(deviceUdid);
+            Assert.assertFalse(list.isEmpty());
         }
     }
 }

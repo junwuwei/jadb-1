@@ -120,4 +120,45 @@ public class ADBDevice {
     public String getUdid() {
         return udid;
     }
+
+    public List<ADBProcess> getProcessList() throws Exception {
+        List<ADBProcess> adbProcesses = new ArrayList<>();
+        String unparsedProcesses = executeShell(ADBShellCommands.PROCESSES);
+        String lines[] = unparsedProcesses.split("\r\n");
+        for (int x = 1; x < lines.length; x++) { // skip first line
+            ADBProcess adbProcess = new ADBProcess();
+            String line = lines[x];
+
+            int index = line.indexOf(" ");
+            adbProcess.setUser(line.substring(0, index));
+            line = line.substring(index).trim();
+            index = line.indexOf(" ");
+            adbProcess.setPid(Integer.parseInt(line.substring(0, index)));
+            line = line.substring(index).trim();
+            index = line.indexOf(" ");
+            adbProcess.setPpid(Integer.parseInt(line.substring(0, index)));
+            line = line.substring(index).trim();
+            index = line.indexOf(" ");
+            adbProcess.setVsize(Integer.parseInt(line.substring(0, index)));
+            line = line.substring(index).trim();
+            index = line.indexOf(" ");
+            adbProcess.setRss(Integer.parseInt(line.substring(0, index)));
+            line = line.substring(index).trim();
+            index = line.indexOf(" ");
+            adbProcess.setWchan(line.substring(0, index));
+            line = line.substring(index).trim();
+            index = line.indexOf(" ");
+            adbProcess.setPc(line.substring(0, index));
+            line = line.substring(index).trim();
+            index = line.indexOf(" ");
+            adbProcess.setType(line.substring(0, index));
+            line = line.substring(index).trim();
+            adbProcess.setName(line);
+
+            adbProcesses.add(adbProcess);
+        }
+        return adbProcesses;
+    }
+
+
 }

@@ -17,4 +17,5 @@ public class ADBShellCommands {
     public static final String PORTRAIT_ORIENTATION_BOTTOM = "content insert --uri content://settings/system --bind name:s:user_rotation --bind value:i:2";
     public static final String LANDSCAPE_ORIENTATION_LEFT = "content insert --uri content://settings/system --bind name:s:user_rotation --bind value:i:3";
     public static final String INPUT_TEXT = "input text";
+    public static final String PROCESSES = "ps";
 }

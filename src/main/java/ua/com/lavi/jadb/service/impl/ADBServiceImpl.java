@@ -112,6 +112,15 @@ public class ADBServiceImpl implements ADBService {
         adbConnection.close();
     }
 
+    @Override
+    public List<ADBProcess> getProcessList(String udid) throws Exception {
+        ADBConnection adbConnection = createConnection();
+        ADBDevice adbDevice = adbConnection.getDevice(udid);
+        List<ADBProcess> adbProcesses = adbDevice.getProcessList();
+        adbConnection.close();
+        return adbProcesses;
+    }
+
     private ADBConnection createConnection() throws Exception {
         ADBConnection adbConnection;
         try {

@@ -1,6 +1,7 @@
 package ua.com.lavi.jadb.service;
 
 import ua.com.lavi.jadb.engine.ADBDisplayOrientation;
+import ua.com.lavi.jadb.engine.ADBProcess;
 import ua.com.lavi.jadb.engine.ADBRemoteFile;
 import ua.com.lavi.jadb.engine.ADBScreenshotType;
 
@@ -27,4 +28,6 @@ public interface ADBService {
     void rotate (String udid, ADBDisplayOrientation orientation) throws Exception;
 
     void sendKeys(String udid, String text) throws Exception;
+
+    List<ADBProcess> getProcessList(String udid) throws Exception;
 }
