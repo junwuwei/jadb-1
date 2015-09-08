@@ -13,6 +13,7 @@ Now it's an interface (ADBService) which allow to get active devices, push/pull 
 	byte[] file = adbService.pullFile(deviceUdid, new ADBRemoteFile("/sdcard/testFile.txt"));
 	adbService.pushFile(deviceUdid, new File("pom.xml"), new ADBRemoteFile("/sdcard/pom.xml"));
 	adbService.sendKeys(deviceUdid, "testSendKeys via ADB");
+	List<ADBProcess> list = adbService.getProcessList(deviceUdid);
 	
 	
 
