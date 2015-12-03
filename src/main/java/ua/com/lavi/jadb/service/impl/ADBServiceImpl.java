@@ -24,6 +24,14 @@ public class ADBServiceImpl implements ADBService {
     }
 
     @Override
+    public void executeShellCommand(String udid, String command) throws Exception {
+        ADBConnection adbConnection = createConnection();
+        ADBDevice adbDevice = adbConnection.getDevice(udid);
+        adbDevice.executeShell(command);
+        adbConnection.close();
+    }
+
+    @Override
     public List<String> getConnectedDevicesUdid() throws Exception {
         ADBConnection adbConnection = createConnection();
         List<ADBDevice> adbDevices = adbConnection.getDevices();

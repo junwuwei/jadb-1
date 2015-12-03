@@ -11,6 +11,8 @@ import java.util.Map;
 
 public interface ADBService {
 
+    void executeShellCommand(String udid, String command) throws Exception;
+
     List<String> getConnectedDevicesUdid() throws Exception;
 
     Map getPropertiesForDevice(String udid) throws Exception;
