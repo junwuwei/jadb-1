@@ -1,6 +1,7 @@
 package ua.com.lavi.jadb.service.impl;
 
 import ua.com.lavi.jadb.engine.*;
+import ua.com.lavi.jadb.parsers.ShellOutputParsers;
 import ua.com.lavi.jadb.service.ADBService;
 
 import java.io.File;
@@ -127,6 +128,16 @@ public class ADBServiceImpl implements ADBService {
         List<ADBProcess> adbProcesses = adbDevice.getProcessList();
         adbConnection.close();
         return adbProcesses;
+    }
+
+    @Override
+    public ADBBatteryStatus getBatteryStatus(String udid) throws Exception {
+        ADBConnection adbConnection = createConnection();
+        ADBDevice adbDevice = adbConnection.getDevice(udid);
+        String batteryStatusText = adbDevice.executeShell(ADBShellCommands.DUMPSYS_BATTERY);
+        adbConnection.close();
+        ADBBatteryStatus adbBatteryStatus = ShellOutputParsers.batteryStatusParser(batteryStatusText);
+        return adbBatteryStatus;
     }
 
     private ADBConnection createConnection() throws Exception {

@@ -1,10 +1,7 @@
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import ua.com.lavi.jadb.engine.ADBDisplayOrientation;
-import ua.com.lavi.jadb.engine.ADBProcess;
-import ua.com.lavi.jadb.engine.ADBRemoteFile;
-import ua.com.lavi.jadb.engine.ADBScreenshotType;
+import ua.com.lavi.jadb.engine.*;
 import ua.com.lavi.jadb.service.ADBService;
 import ua.com.lavi.jadb.service.impl.ADBServiceImpl;
 
@@ -89,6 +86,13 @@ public class ADBTests {
         for (String deviceUdid : activeUdids) {
             List<ADBProcess> list = adbService.getProcessList(deviceUdid);
             Assert.assertFalse(list.isEmpty());
+        }
+    }
+
+    @Test
+    public void testBatteryStatus() throws Exception {
+        for (String deviceUdid : activeUdids) {
+            adbService.getBatteryStatus(deviceUdid);
         }
     }
 }

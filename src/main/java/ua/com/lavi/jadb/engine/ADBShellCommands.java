@@ -11,6 +11,7 @@ public class ADBShellCommands {
     public static final String DELETE_RAW_SCREENSHOT = "rm -r " + PROPERTY_RAW_SCREENSHOT_PATH;
     public static final String GET_PNG_SCREENSHOT = "screencap -p " + PROPERTY_PNG_SCREENSHOT_PATH;
     public static final String DELETE_PNG_SCREENSHOT = "rm -r " + PROPERTY_PNG_SCREENSHOT_PATH;
+    public static final String DUMPSYS_BATTERY = "dumpsys battery";
     public static final String DISABLE_ACCELEROMETER_ROTATION = "content insert --uri content://settings/system --bind name:s:accelerometer_rotation --bind value:i:0";
     public static final String PORTRAIT_ORIENTATION_TOP = "content insert --uri content://settings/system --bind name:s:user_rotation --bind value:i:0";
     public static final String LANDSCAPE_ORIENTATION_RIGHT = "content insert --uri content://settings/system --bind name:s:user_rotation --bind value:i:1";

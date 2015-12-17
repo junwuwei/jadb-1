@@ -1,9 +1,6 @@
 package ua.com.lavi.jadb.service;
 
-import ua.com.lavi.jadb.engine.ADBDisplayOrientation;
-import ua.com.lavi.jadb.engine.ADBProcess;
-import ua.com.lavi.jadb.engine.ADBRemoteFile;
-import ua.com.lavi.jadb.engine.ADBScreenshotType;
+import ua.com.lavi.jadb.engine.*;
 
 import java.io.File;
 import java.util.List;
@@ -32,4 +29,6 @@ public interface ADBService {
     void sendKeys(String udid, String text) throws Exception;
 
     List<ADBProcess> getProcessList(String udid) throws Exception;
+
+    ADBBatteryStatus getBatteryStatus(String udid) throws Exception;
 }
